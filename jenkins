@@ -3,7 +3,15 @@ pipeline{
     stages{
         stage("Build Docker image"){
             steps{
-                sh "docker build . -t kammana/nodeapp:v1"
+                sh "docker build . -t prasanna451/nodeapp:v1"
+            }
+        }
+        stage("Build push"){
+            steps{
+                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerhubpwd')]) {
+                sh "docker login -u prasanna451 -p ${dockerhubpwd}"
+                sh "docker push prasanna451/nodeapp:v1"
+}
             }
         }
     }
