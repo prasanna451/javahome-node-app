@@ -4,10 +4,8 @@ pipeline{
     stages{
         stage("Build Docker image"){
             steps{
-                sh "sudo yum update -y"
-                sh "sudo yum upgrade -y"
-                sh "sudo yum install docker.io -y"
-                sh "sudo docker run -itd -P httpd"
+                sh "docker images"
+                
             }
         }
     }
